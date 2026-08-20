@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://barfpimpon.mx";
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://barfpimpon.mx");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
