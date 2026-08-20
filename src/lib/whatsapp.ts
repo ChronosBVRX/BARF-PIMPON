@@ -25,3 +25,21 @@ export function buildQuickOrderMessage(params: {
   ];
   return lines.join("\n");
 }
+
+export function buildOrderMessage(params: {
+  product: string;
+  preparation: "Crudo" | "Cocido";
+  presentation: "500 g" | "1 kg";
+  quantity: number;
+}): string {
+  return [
+    "Hola, vi BARF Pimpon en su sitio web y quiero hacer un pedido.",
+    "",
+    `Producto: ${params.product}`,
+    `Preparación: ${params.preparation}`,
+    `Presentación: ${params.presentation}`,
+    `Cantidad: ${params.quantity}`,
+    "",
+    "¿Me confirman disponibilidad?",
+  ].join("\n");
+}
