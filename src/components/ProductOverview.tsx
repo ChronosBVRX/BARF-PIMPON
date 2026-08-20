@@ -6,12 +6,12 @@ export default function ProductOverview() {
     <section className="section" id="producto">
       <div className="container">
         <div className="split">
-          <div className="media-frame" style={{ aspectRatio: "1 / 1" }}>
+          <div className="media-frame" style={{ aspectRatio: "4 / 3" }}>
             <Image
-              src="/brand/logo-lockup.webp"
-              alt="Logotipo de BARF Pimpon con el lema Nutrición real, vida feliz"
-              width={640}
-              height={428}
+              src="/products/pollo-res.webp"
+              alt="Presentación de alimento BARF Pimpon de pollo y res, empaque sellado al vacío"
+              width={900}
+              height={675}
               sizes="(min-width: 880px) 45vw, 90vw"
             />
           </div>

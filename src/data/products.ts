@@ -9,6 +9,9 @@ export type Product = {
   preparation: "Crudo" | "Cocido";
   variants: ProductVariant[];
   available: boolean;
+  image: string;
+  images: string[];
+  imageAlt: string;
 };
 
 export const products: Product[] = [
@@ -21,6 +24,9 @@ export const products: Product[] = [
       { weight: "1 kg", price: 35 },
     ],
     available: true,
+    image: "/products/pollo.webp",
+    images: ["/products/pollo.webp"],
+    imageAlt: "Paquete de alimento BARF Pimpon de pollo",
   },
   {
     id: "pollo-arroz-vegetales-crudo",
@@ -31,6 +37,9 @@ export const products: Product[] = [
       { weight: "1 kg", price: 45 },
     ],
     available: true,
+    image: "/products/pollo.webp",
+    images: ["/products/pollo.webp"],
+    imageAlt: "Paquete de alimento BARF Pimpon de pollo con vegetales",
   },
   {
     id: "pollo-res-vegetales-crudo",
@@ -41,6 +50,9 @@ export const products: Product[] = [
       { weight: "1 kg", price: 50 },
     ],
     available: true,
+    image: "/products/pollo-res.webp",
+    images: ["/products/pollo-res.webp", "/products/pollo-res-2.webp"],
+    imageAlt: "Presentación de alimento BARF Pimpon de pollo y res",
   },
   {
     id: "pollo-arroz-cocido",
@@ -51,6 +63,9 @@ export const products: Product[] = [
       { weight: "1 kg", price: 65 },
     ],
     available: true,
+    image: "/products/pollo.webp",
+    images: ["/products/pollo.webp"],
+    imageAlt: "Paquete de alimento BARF Pimpon cocido de pollo",
   },
   {
     id: "pollo-arroz-vegetales-cocido",
@@ -61,6 +76,9 @@ export const products: Product[] = [
       { weight: "1 kg", price: 65 },
     ],
     available: true,
+    image: "/products/pollo.webp",
+    images: ["/products/pollo.webp"],
+    imageAlt: "Paquete de alimento BARF Pimpon cocido de pollo con vegetales",
   },
   {
     id: "pollo-res-vegetales-cocido",
@@ -71,6 +89,9 @@ export const products: Product[] = [
       { weight: "1 kg", price: 65 },
     ],
     available: true,
+    image: "/products/pollo-res.webp",
+    images: ["/products/pollo-res.webp", "/products/pollo-res-2.webp"],
+    imageAlt: "Segunda vista del alimento BARF Pimpon de pollo y res",
   },
 ];
 

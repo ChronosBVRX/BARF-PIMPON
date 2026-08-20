@@ -6,6 +6,7 @@ import Benefits from "@/components/Benefits";
 import VacuumSealed from "@/components/VacuumSealed";
 import Ingredients from "@/components/Ingredients";
 import Handling from "@/components/Handling";
+import Gallery from "@/components/Gallery";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import { site } from "@/config/site";
@@ -69,6 +70,7 @@ export default function HomePage() {
         <VacuumSealed />
         <Ingredients />
         <Handling />
+        <Gallery />
         <FAQ />
         <FinalCTA />
       </main>

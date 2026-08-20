@@ -1219,19 +1219,52 @@ a {
 
 .catalog-card__media {
   position: relative;
-  background: var(--cream);
-  padding: var(--s-6);
-  display: grid;
-  place-items: center;
+  background: var(--cream-deep);
+  padding: 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  min-height: 220px;
 }
 
 .catalog-card__media img {
   width: 100%;
-  max-width: 260px;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.catalog-card__thumbs {
+  position: absolute;
+  bottom: var(--s-3);
+  right: var(--s-3);
+  display: flex;
+  gap: 6px;
+}
+
+.catalog-card__thumb {
+  width: 44px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0;
+  background: var(--surface);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  opacity: 0.85;
+  transition: opacity 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.catalog-card__thumb--active {
+  opacity: 1;
+  border-color: var(--brand-700);
+  transform: scale(1.05);
+}
+
+.catalog-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .catalog-card__badge {
@@ -1654,6 +1687,56 @@ a {
 
 .vacuum__card--accent .vacuum__card-text {
   color: #d7debf;
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+  margin-top: var(--s-6);
+}
+
+@media (min-width: 880px) {
+  .gallery__grid {
+    grid-template-columns: 1.55fr 1fr;
+    gap: var(--s-6);
+    align-items: stretch;
+  }
+}
+
+.gallery__item {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--cream-deep);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 4 / 3;
+}
+
+.gallery__item--large img {
+  aspect-ratio: 16 / 11;
+}
+
+.gallery__item figcaption {
+  padding: var(--s-3) var(--s-4);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.gallery__column {
+  display: grid;
+  gap: var(--s-5);
 }
 
 main {

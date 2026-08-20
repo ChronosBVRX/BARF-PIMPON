@@ -38,7 +38,8 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 
 ## 3. Identidad y contenido verificable
 
-- [ ] **Fotos profesionales del producto** (bolsa, porciones, empaque). Hoy se usa la ilustración oficial del logo como placeholder en catálogo y beneficios.
+- [x] **Fotografías reales iniciales del producto incorporadas** — 3 archivos optimizados en `public/products/`: `pollo.webp` (familia pollo), `pollo-res.webp` + `pollo-res-2.webp` (familia pollo+res). Catálogo, bloque “Comida real, sin complicar tu rutina” y nueva Galería ya usan fotos reales; se eliminó `brand-mark.webp` como imagen de producto. OG `og-image.png` (264 KB) y `og-image.jpg` (148 KB) regenerados con foto real + logo.
+- [ ] **Obtener fotografías específicas adicionales para cada una de las 6 variantes** — actualmente `Pollo + arroz` y `Pollo + arroz + vegetales` comparten `pollo.webp` (fotografía real pero no distingue arroz/vegetales); `Pollo + res + vegetales` (crudo y cocido) comparte `pollo-res.webp`/`pollo-res-2.webp`. La arquitectura (`image`/`images`/`imageAlt` en `products.ts`) permite reemplazo 1-a-1 sin refactorizar componentes.
 - [ ] **Archivo vectorial del logo** si existe.
 - [ ] **Redes sociales reales** y enlaces confirmados.
 - [ ] **Correo de contacto institucional**.
@@ -62,4 +63,8 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 - `src/components/Benefits.tsx`: sección editorial “Nutrición que va más allá de los ingredientes” (antes de la mitad de la página).
 - `src/components/VacuumSealed.tsx`: sellado al vacío + congelado + crudo/cocido.
 - `src/components/Hero.tsx`: H1 “Nutrición real para todos los días.”, texto con vitaminas/minerales/Omega y CTAs “Ver fórmulas y precios” + WhatsApp.
-- `public/`: sin fotos reales aún; se reutiliza `brand-mark.webp` como placeholder.
+- `public/products/`: `pollo.webp`, `pollo-res.webp`, `pollo-res-2.webp` (derivados web 900×675, ~103-144 KB) generados desde originales intactos en raíz; `public/social/og-image.png` + `.jpg` con foto real.
+- `src/data/products.ts`: `image`/`images`/`imageAlt` por producto; familias mapeadas según inspección visual y etiquetas (sin falsificar).
+- `src/components/Catalog.tsx`: foto ocupa 40-50% superior con `object-fit: cover`, miniaturas para segunda vista de pollo+res, sin `brand-mark.webp` como producto.
+- `src/components/ProductOverview.tsx`: foto real grande `pollo-res.webp`.
+- `src/components/Gallery.tsx`: galería editorial para 3 fotos (sin repetir artificialmente).

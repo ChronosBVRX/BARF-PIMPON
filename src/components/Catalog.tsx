@@ -12,14 +12,19 @@ type CardProps = {
   name: string;
   preparation: "Crudo" | "Cocido";
   variants: { weight: "500 g" | "1 kg"; price: number | null }[];
+  image: string;
+  images: string[];
+  imageAlt: string;
 };
 
-function ProductCard({ name, preparation, variants }: CardProps) {
+function ProductCard({ name, preparation, variants, image, images, imageAlt }: CardProps) {
   const [variantIdx, setVariantIdx] = useState(1);
   const [qty, setQty] = useState(1);
+  const [imgIdx, setImgIdx] = useState(0);
   const variant = variants[variantIdx];
   const price = variant.price;
   const total = price !== null ? price * qty : null;
+  const mainImage = images[imgIdx] ?? image;
 
   const message = useMemo(
     () =>
@@ -38,15 +43,31 @@ function ProductCard({ name, preparation, variants }: CardProps) {
     <article className="catalog-card">
       <div className="catalog-card__media">
         <Image
-          src="/brand/brand-mark.webp"
-          alt=""
-          width={400}
-          height={280}
-          sizes="(min-width: 960px) 33vw, 90vw"
+          src={mainImage}
+          alt={imageAlt}
+          width={900}
+          height={675}
+          sizes="(min-width: 1100px) 30vw, (min-width: 760px) 45vw, 90vw"
         />
         <span className={`catalog-card__badge catalog-card__badge--${preparation === "Crudo" ? "raw" : "cooked"}`}>
           {preparation === "Crudo" ? "Alimento crudo" : "Alimento cocido"}
         </span>
+        {images.length > 1 && (
+          <div className="catalog-card__thumbs" role="group" aria-label={`Vistas de ${name}`}>
+            {images.map((src, i) => (
+              <button
+                key={src}
+                type="button"
+                className={`catalog-card__thumb ${i === imgIdx ? "catalog-card__thumb--active" : ""}`}
+                onClick={() => setImgIdx(i)}
+                aria-label={`Vista ${i + 1} de ${name}`}
+                aria-pressed={i === imgIdx}
+              >
+                <Image src={src} alt="" width={64} height={48} />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="catalog-card__body">
@@ -145,7 +166,16 @@ export default function Catalog() {
           </div>
           <div className="catalog-grid">
             {crudoProducts.map((p) => (
-              <ProductCard key={p.id} id={p.id} name={p.name} preparation={p.preparation} variants={p.variants} />
+              <ProductCard
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                preparation={p.preparation}
+                variants={p.variants}
+                image={p.image}
+                images={p.images}
+                imageAlt={p.imageAlt}
+              />
             ))}
           </div>
         </div>
@@ -157,7 +187,16 @@ export default function Catalog() {
           </div>
           <div className="catalog-grid">
             {cocidoProducts.map((p) => (
-              <ProductCard key={p.id} id={p.id} name={p.name} preparation={p.preparation} variants={p.variants} />
+              <ProductCard
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                preparation={p.preparation}
+                variants={p.variants}
+                image={p.image}
+                images={p.images}
+                imageAlt={p.imageAlt}
+              />
             ))}
           </div>
         </div>
