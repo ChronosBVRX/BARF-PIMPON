@@ -2,6 +2,8 @@ import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
 import ProductOverview from "@/components/ProductOverview";
 import Catalog from "@/components/Catalog";
+import Benefits from "@/components/Benefits";
+import VacuumSealed from "@/components/VacuumSealed";
 import Ingredients from "@/components/Ingredients";
 import Handling from "@/components/Handling";
 import FAQ from "@/components/FAQ";
@@ -63,6 +65,8 @@ export default function HomePage() {
         <TrustStrip />
         <ProductOverview />
         <Catalog />
+        <Benefits />
+        <VacuumSealed />
         <Ingredients />
         <Handling />
         <FAQ />

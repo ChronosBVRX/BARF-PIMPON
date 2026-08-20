@@ -11,14 +11,16 @@ export default function Hero() {
       <div className="container hero__inner">
         <div className="hero__copy">
           <p className="hero__kicker">Alimentación natural para perros</p>
-          <h1 className="hero__title">
-            Nutrición real, preparada para su día a día.
-          </h1>
+          <h1 className="hero__title">Nutrición real para todos los días.</h1>
           <p className="hero__text">
-            Alimento BARF preparado en porciones prácticas para hacer más
-            sencilla la alimentación de tu perro.
+            Fórmulas de pollo y res con vitaminas, minerales, aminoácidos y
+            ácidos grasos Omega, disponibles crudas o cocidas y en presentaciones
+            prácticas de 500 g y 1 kg.
           </p>
           <div className="hero__actions">
+            <a href="#productos" className="btn btn--primary">
+              Ver fórmulas y precios
+            </a>
             <Link
               href={waLink(DEFAULT_WA_MESSAGE)}
               target="_blank"
@@ -28,11 +30,10 @@ export default function Hero() {
               <WhatsAppIcon />
               Pedir por WhatsApp
             </Link>
-            <a href="#producto" className="btn btn--outline">
-              Conocer el producto
-            </a>
           </div>
-          <p className="hero__micro">Atención directa por WhatsApp.</p>
+          <p className="hero__micro">
+            Sellado al vacío · Conservación congelada · Atención directa por WhatsApp
+          </p>
         </div>
 
         <div className="hero__visual">
@@ -48,7 +49,7 @@ export default function Hero() {
           </div>
           <div className="hero__float hero__float--tl">
             <ShoppingBag size={18} />
-            Porciones prácticas
+            Sellado al vacío
           </div>
           <div className="hero__float hero__float--br">
             <Snowflake size={18} />

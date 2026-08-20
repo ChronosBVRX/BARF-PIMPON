@@ -1410,6 +1410,252 @@ a {
   line-height: 1.4;
 }
 
+.benefits__header {
+  max-width: 740px;
+  margin-bottom: var(--s-8);
+}
+
+.benefits__title {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  margin-top: var(--s-3);
+}
+
+.benefits__intro {
+  margin-top: var(--s-4);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+.benefits__note {
+  margin-top: var(--s-3);
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-left: 3px solid var(--line-strong);
+  padding-left: var(--s-4);
+}
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+}
+
+@media (min-width: 760px) {
+  .benefits__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .benefits__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.benefit {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.benefit__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: var(--brand-50);
+  color: var(--brand-700);
+  border: 1px solid var(--line);
+}
+
+.benefit__title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.benefit__nutrients {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+}
+
+.benefit__statement {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.benefits__foot {
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+}
+
+@media (min-width: 880px) {
+  .benefits__foot {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.benefits__foot-card {
+  padding: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--brand-900);
+  color: #e9eed8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.benefits__foot-card h4 {
+  color: #f6f3e8;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.benefits__foot-card p {
+  color: #cfd7b2;
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.benefits__foot-card--muted {
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+.benefits__foot-card--muted h4 {
+  color: var(--ink);
+}
+
+.benefits__foot-card--muted p {
+  color: var(--text-soft);
+}
+
+.vacuum__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-8);
+  align-items: center;
+}
+
+@media (min-width: 880px) {
+  .vacuum__grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.vacuum h2 {
+  margin-top: var(--s-3);
+}
+
+.vacuum .lead {
+  margin-top: var(--s-4);
+}
+
+.vacuum__list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-6) 0 0;
+  display: grid;
+  gap: var(--s-4);
+}
+
+.vacuum__list li {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+}
+
+.vacuum__list-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: var(--brand-100);
+  color: var(--brand-700);
+  border: 1px solid var(--line);
+}
+
+.vacuum__list strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.vacuum__list span {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+.vacuum__visual {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.vacuum__card {
+  padding: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+
+.vacuum__card--accent {
+  background: var(--brand-700);
+  color: #fff;
+  border-color: var(--brand-700);
+}
+
+.vacuum__card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.vacuum__card--accent .vacuum__card-label {
+  color: #dfe8c2;
+  opacity: 1;
+}
+
+.vacuum__card-title {
+  margin-top: 6px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.vacuum__card--accent .vacuum__card-title {
+  color: #fff;
+}
+
+.vacuum__card-text {
+  margin-top: 6px;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+.vacuum__card--accent .vacuum__card-text {
+  color: #d7debf;
+}
+
 main {
   padding-bottom: 0;
 }
