@@ -3,6 +3,7 @@ import TrustStrip from "@/components/TrustStrip";
 import ProductOverview from "@/components/ProductOverview";
 import Catalog from "@/components/Catalog";
 import Benefits from "@/components/Benefits";
+import DogsEating from "@/components/DogsEating";
 import VacuumSealed from "@/components/VacuumSealed";
 import Ingredients from "@/components/Ingredients";
 import Handling from "@/components/Handling";
@@ -67,6 +68,7 @@ export default function HomePage() {
         <ProductOverview />
         <Catalog />
         <Benefits />
+        <DogsEating />
         <VacuumSealed />
         <Ingredients />
         <Handling />

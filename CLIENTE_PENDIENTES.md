@@ -38,8 +38,10 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 
 ## 3. Identidad y contenido verificable
 
-- [x] **Fotografías reales iniciales del producto incorporadas** — 3 archivos optimizados en `public/products/`: `pollo.webp` (familia pollo), `pollo-res.webp` + `pollo-res-2.webp` (familia pollo+res). Catálogo, bloque “Comida real, sin complicar tu rutina” y nueva Galería ya usan fotos reales; se eliminó `brand-mark.webp` como imagen de producto. OG `og-image.png` (264 KB) y `og-image.jpg` (148 KB) regenerados con foto real + logo.
-- [ ] **Obtener fotografías específicas adicionales para cada una de las 6 variantes** — actualmente `Pollo + arroz` y `Pollo + arroz + vegetales` comparten `pollo.webp` (fotografía real pero no distingue arroz/vegetales); `Pollo + res + vegetales` (crudo y cocido) comparte `pollo-res.webp`/`pollo-res-2.webp`. La arquitectura (`image`/`images`/`imageAlt` en `products.ts`) permite reemplazo 1-a-1 sin refactorizar componentes.
+- [x] **Fotografías reales iniciales del producto incorporadas** — 3 archivos optimizados en `public/products/`: `pollo.webp` (familia pollo), `pollo-res.webp` + `pollo-res-2.webp` (familia pollo+res). Catálogo, bloque “Comida real, sin complicar tu rutina” y Galería “El producto” ya usan fotos reales; se eliminó `brand-mark.webp` como imagen de producto. OG `og-image.png` (264 KB) y `og-image.jpg` (148 KB) regenerados con foto real + logo.
+- [x] **Fotografías reales de perros consumiendo el alimento** — 5 originales en raíz (`Perro Comiendo 1-4.png`, `Situaciones.png`) inspeccionados: `Situaciones.png` (1448×1086, 91/200 blancos en línea media) identificado como collage de ~4 perros; `Perro Comiendo 1.png` y `4.png` son duplicados idénticos (SHA256 `8CE0B8E7…`), por lo que se usan 3 únicos + collage en `public/gallery/` (`dog-eating-01/02/03.webp` 900×900, `dogs-eating-collage.webp` 900×675). Sección editorial “Hecho para disfrutar cada comida” después de Beneficios, sin claims clínicos, con `alt` natural y sin repetir foto.
+- [ ] **Obtener fotografías específicas adicionales para cada una de las 6 variantes** — actualmente `Pollo + arroz` y `Pollo + arroz + vegetales` comparten `pollo.webp`; `Pollo + res + vegetales` (crudo y cocido) comparte `pollo-res.webp`/`pollo-res-2.webp`. Arquitectura (`image`/`images`/`imageAlt`) permite reemplazo 1-a-1.
+- [ ] **Sesión fotográfica profesional adicional del producto y mascotas** — mejora futura para ampliar banco de imágenes.
 - [ ] **Archivo vectorial del logo** si existe.
 - [ ] **Redes sociales reales** y enlaces confirmados.
 - [ ] **Correo de contacto institucional**.
@@ -63,8 +65,11 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 - `src/components/Benefits.tsx`: sección editorial “Nutrición que va más allá de los ingredientes” (antes de la mitad de la página).
 - `src/components/VacuumSealed.tsx`: sellado al vacío + congelado + crudo/cocido.
 - `src/components/Hero.tsx`: H1 “Nutrición real para todos los días.”, texto con vitaminas/minerales/Omega y CTAs “Ver fórmulas y precios” + WhatsApp.
-- `public/products/`: `pollo.webp`, `pollo-res.webp`, `pollo-res-2.webp` (derivados web 900×675, ~103-144 KB) generados desde originales intactos en raíz; `public/social/og-image.png` + `.jpg` con foto real.
-- `src/data/products.ts`: `image`/`images`/`imageAlt` por producto; familias mapeadas según inspección visual y etiquetas (sin falsificar).
-- `src/components/Catalog.tsx`: foto ocupa 40-50% superior con `object-fit: cover`, miniaturas para segunda vista de pollo+res, sin `brand-mark.webp` como producto.
+- `public/products/`: `pollo.webp`, `pollo-res.webp`, `pollo-res-2.webp` (900×675, ~103-144 KB) desde originales intactos.
+- `public/gallery/`: `dog-eating-01/02/03.webp` (900×900) + `dogs-eating-collage.webp` (900×675) desde 5 originales; `Perro Comiendo 1` y `4` duplicados, se usan 3 únicos + collage.
+- `public/social/og-image.png` + `.jpg` con foto real + logo sobre fondo crema.
+- `src/data/products.ts`: `image`/`images`/`imageAlt` por producto; familias mapeadas sin falsificar etiquetas.
+- `src/components/Catalog.tsx`: foto 40-50% `cover`, miniaturas para pollo+res, sin `brand-mark.webp` como producto.
 - `src/components/ProductOverview.tsx`: foto real grande `pollo-res.webp`.
-- `src/components/Gallery.tsx`: galería editorial para 3 fotos (sin repetir artificialmente).
+- `src/components/Gallery.tsx`: galería editorial “El producto” (3 fotos).
+- `src/components/DogsEating.tsx`: sección editorial “Hecho para disfrutar cada comida” (collage 60% + 3 individuales, mobile collage arriba + grid 2 cols), jerarquía Logo → Producto → Perros comiendo.
