@@ -9,14 +9,16 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 ## 1. Datos comerciales
 
 - [x] **Precios de 1 kg** — confirmados:
-  - Crudo Pollo + arroz $35 · Pollo + arroz + vegetales $45 · Pollo + res + vegetales $50
-  - Cocido (las tres fórmulas) $65
-- [x] **Presentaciones** — 500 g y 1 kg (estructura permite precio independiente por variante).
+  - Crudo Pollo + arroz $35.00 · Pollo + arroz + vegetales $45.00 · Pollo + res + vegetales $50.00
+  - Cocido (las tres fórmulas) $65.00
+- [x] **Precios de 500 g** — confirmados (mitad de 1 kg):
+  - Crudo Pollo + arroz $17.50 · Pollo + arroz + vegetales $22.50 · Pollo + res + vegetales $25.00
+  - Cocido (las tres fórmulas) $32.50
+- [x] **Presentaciones** — 500 g y 1 kg (precio independiente por variante, fuente única `src/data/products.ts`, cálculo por centavos para evitar `52.4999`).
 - [x] **Productos crudos** — 3 fórmulas confirmadas.
-- [x] **Productos cocidos** — 3 fórmulas (mismas recetas) confirmadas a $65/kg.
-- [x] **Beneficios nutricionales** — confirmados con respaldo científico del propietario: vitaminas (A, D, E, K, Complejo B, ácido fólico), minerales (calcio, fósforo, magnesio, zinc, hierro), aminoácidos, Omega 3/6/9, apoyo a energía/vitalidad, desarrollo muscular, piel/pelaje, nutrición completa y balanceada. Implementados en `src/data/nutritionClaims.ts` y sección `Benefits`.
-- [x] **Sellado al vacío + conservación congelada** — confirmado y publicado en sección `VacuumSealed` y `Handling`.
-- [ ] **Precio de 500 g para cada fórmula** — `price: null` hoy; se muestra "Precio por confirmar" y se confirma por WhatsApp. No asumir mitad del precio de 1 kg.
+- [x] **Productos cocidos** — 3 fórmulas (mismas recetas) confirmadas.
+- [x] **Beneficios nutricionales** — confirmados con respaldo científico: vitaminas (A, D, E, K, Complejo B, ácido fólico), minerales (calcio, fósforo, magnesio, zinc, hierro), aminoácidos, Omega 3/6/9, apoyo a energía/vitalidad, desarrollo muscular, piel/pelaje, nutrición completa y balanceada. Implementados en `src/data/nutritionClaims.ts` y sección `Benefits`.
+- [x] **Sellado al vacío + conservación congelada** — confirmado y publicado en `VacuumSealed` y `Handling`.
 - [ ] **Ingredientes exactos** con proporciones / % por fórmula.
 - [ ] **Tabla nutricional cuantitativa** (proteína cruda, grasa, fibra, humedad, kcal; referencia NOM-044 si aplica).
 - [ ] **Porciones diarias** sugeridas por peso y etapa de vida.
@@ -39,9 +41,9 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 ## 3. Identidad y contenido verificable
 
 - [x] **Fotografías reales iniciales del producto incorporadas** — 3 archivos optimizados en `public/products/`: `pollo.webp` (familia pollo), `pollo-res.webp` + `pollo-res-2.webp` (familia pollo+res). Catálogo, bloque “Comida real, sin complicar tu rutina” y Galería “El producto” ya usan fotos reales; se eliminó `brand-mark.webp` como imagen de producto. OG `og-image.png` (264 KB) y `og-image.jpg` (148 KB) regenerados con foto real + logo.
-- [x] **Fotografías reales de perros consumiendo el alimento** — 5 originales en raíz (`Perro Comiendo 1-4.png`, `Situaciones.png`) inspeccionados: `Situaciones.png` (1448×1086, 91/200 blancos en línea media) identificado como collage de ~4 perros; `Perro Comiendo 1.png` y `4.png` son duplicados idénticos (SHA256 `8CE0B8E7…`), por lo que se usan 3 únicos + collage en `public/gallery/` (`dog-eating-01/02/03.webp` 900×900, `dogs-eating-collage.webp` 900×675). Sección editorial “Hecho para disfrutar cada comida” después de Beneficios, sin claims clínicos, con `alt` natural y sin repetir foto.
+- [x] **Fotografías reales de perros consumiendo el alimento** — 5 originales inspeccionados: `Situaciones.png` (collage ~4 perros) + 3 únicos `Perro Comiendo` (1 y 4 duplicados SHA256 `8CE0B8E7…`) en `public/gallery/` (`dog-eating-01/02/03.webp` + `dogs-eating-collage.webp`). Sección editorial “Hecho para disfrutar cada comida” después de Beneficios, con texto ilustrativo neutro (ni “reales” ni “IA”) y sin claims clínicos.
 - [ ] **Obtener fotografías específicas adicionales para cada una de las 6 variantes** — actualmente `Pollo + arroz` y `Pollo + arroz + vegetales` comparten `pollo.webp`; `Pollo + res + vegetales` (crudo y cocido) comparte `pollo-res.webp`/`pollo-res-2.webp`. Arquitectura (`image`/`images`/`imageAlt`) permite reemplazo 1-a-1.
-- [ ] **Sesión fotográfica profesional adicional del producto y mascotas** — mejora futura para ampliar banco de imágenes.
+- [ ] **Sesión fotográfica profesional adicional del producto y mascotas** — mejora futura.
 - [ ] **Archivo vectorial del logo** si existe.
 - [ ] **Redes sociales reales** y enlaces confirmados.
 - [ ] **Correo de contacto institucional**.
@@ -59,17 +61,13 @@ Lista de datos que aún no están disponibles y que el sitio **no publica** hast
 
 ## Cómo se reflejó en el código
 
-- `src/data/products.ts`: 6 productos con `ProductVariant` y `price: number | null` por presentación.
-- `src/components/Catalog.tsx`: catálogo en dos grupos, selector 500 g / 1 kg, qty y CTA `buildOrderMessage`.
-- `src/data/nutritionClaims.ts`: 6 claims aprobados (`energy`, `muscle`, `skin-coat`, `vitamins`, `minerals`, `complete`) con `approved: true`.
-- `src/components/Benefits.tsx`: sección editorial “Nutrición que va más allá de los ingredientes” (antes de la mitad de la página).
-- `src/components/VacuumSealed.tsx`: sellado al vacío + congelado + crudo/cocido.
-- `src/components/Hero.tsx`: H1 “Nutrición real para todos los días.”, texto con vitaminas/minerales/Omega y CTAs “Ver fórmulas y precios” + WhatsApp.
-- `public/products/`: `pollo.webp`, `pollo-res.webp`, `pollo-res-2.webp` (900×675, ~103-144 KB) desde originales intactos.
-- `public/gallery/`: `dog-eating-01/02/03.webp` (900×900) + `dogs-eating-collage.webp` (900×675) desde 5 originales; `Perro Comiendo 1` y `4` duplicados, se usan 3 únicos + collage.
-- `public/social/og-image.png` + `.jpg` con foto real + logo sobre fondo crema.
-- `src/data/products.ts`: `image`/`images`/`imageAlt` por producto; familias mapeadas sin falsificar etiquetas.
-- `src/components/Catalog.tsx`: foto 40-50% `cover`, miniaturas para pollo+res, sin `brand-mark.webp` como producto.
+- `src/data/products.ts`: 6 productos × 2 variantes con `price: number` (sin `null`/`Por confirmar`), `currencyFormatter` con 2 decimales, helpers `priceToCents`/`formatCents` para totales sin error de punto flotante.
+- `src/components/Catalog.tsx`: foto 40-50% `cover`, miniaturas para pollo+res, selector 500 g/1 kg, qty 1-12 clamped, total por centavos, sin `brand-mark.webp` como producto.
 - `src/components/ProductOverview.tsx`: foto real grande `pollo-res.webp`.
 - `src/components/Gallery.tsx`: galería editorial “El producto” (3 fotos).
-- `src/components/DogsEating.tsx`: sección editorial “Hecho para disfrutar cada comida” (collage 60% + 3 individuales, mobile collage arriba + grid 2 cols), jerarquía Logo → Producto → Perros comiendo.
+- `src/components/DogsEating.tsx`: sección editorial “Hecho para disfrutar cada comida” (collage 60% + 3 individuales), texto ilustrativo con blindaje legal, `alt` natural.
+- `src/data/nutritionClaims.ts`: 6 claims aprobados con `approved: true`.
+- `src/components/Benefits.tsx`: sección editorial “Nutrición que va más allá…”.
+- `src/components/VacuumSealed.tsx`: sellado al vacío + congelado + crudo/cocido.
+- `src/components/Hero.tsx`: H1 “Nutrición real para todos los días.”.
+- `public/products/` + `public/gallery/` + `public/social/og-image.*` con foto real.

@@ -39,15 +39,13 @@ export default function HomePage() {
         "@type": "Product",
         name: `${p.name} — ${p.preparation}`,
         description: `Alimento ${p.preparation.toLowerCase()} para perros`,
-        offers: p.variants
-          .filter((v) => v.price !== null)
-          .map((v) => ({
-            "@type": "Offer",
-            price: v.price,
-            priceCurrency: "MXN",
-            availability: "https://schema.org/InStock",
-            name: `${p.name} ${v.weight}`,
-          })),
+        offers: p.variants.map((v) => ({
+          "@type": "Offer",
+          price: v.price,
+          priceCurrency: "MXN",
+          availability: "https://schema.org/InStock",
+          name: `${p.name} ${v.weight}`,
+        })),
       },
     })),
   };

@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
-import { crudoProducts, cocidoProducts, currencyFormatter } from "@/data/products";
+import { crudoProducts, cocidoProducts, currencyFormatter, priceToCents, centsToPrice } from "@/data/products";
 import { buildOrderMessage } from "@/lib/whatsapp";
 import { site } from "@/config/site";
 
@@ -11,7 +11,7 @@ type CardProps = {
   id: string;
   name: string;
   preparation: "Crudo" | "Cocido";
-  variants: { weight: "500 g" | "1 kg"; price: number | null }[];
+  variants: { weight: "500 g" | "1 kg"; price: number }[];
   image: string;
   images: string[];
   imageAlt: string;
@@ -23,7 +23,9 @@ function ProductCard({ name, preparation, variants, image, images, imageAlt }: C
   const [imgIdx, setImgIdx] = useState(0);
   const variant = variants[variantIdx];
   const price = variant.price;
-  const total = price !== null ? price * qty : null;
+  const priceCents = priceToCents(price);
+  const totalCents = priceCents * qty;
+  const total = centsToPrice(totalCents);
   const mainImage = images[imgIdx] ?? image;
 
   const message = useMemo(
@@ -82,7 +84,7 @@ function ProductCard({ name, preparation, variants, image, images, imageAlt }: C
               className={`catalog-card__variant ${i === variantIdx ? "catalog-card__variant--active" : ""}`}
               onClick={() => setVariantIdx(i)}
               aria-pressed={i === variantIdx}
-              aria-label={`${v.weight}${v.price !== null ? ` ${currencyFormatter.format(v.price)}` : " precio por confirmar"}`}
+              aria-label={`${v.weight} ${currencyFormatter.format(v.price)}`}
             >
               {v.weight}
             </button>
@@ -91,14 +93,10 @@ function ProductCard({ name, preparation, variants, image, images, imageAlt }: C
 
         <div className="catalog-card__price">
           <span className="catalog-card__price-weight">{variant.weight}</span>
-          {price !== null ? (
-            <span className="catalog-card__price-value">{currencyFormatter.format(price)} MXN</span>
-          ) : (
-            <span className="catalog-card__price-pending">Precio por confirmar</span>
-          )}
-          {price !== null && qty > 1 && total !== null && (
+          <span className="catalog-card__price-value">{currencyFormatter.format(price)}</span>
+          {qty > 1 && (
             <span className="catalog-card__price-total">
-              {qty} × {currencyFormatter.format(price)} = {currencyFormatter.format(total)} MXN
+              {qty} × {currencyFormatter.format(price)} = {currencyFormatter.format(total)}
             </span>
           )}
         </div>
@@ -138,9 +136,6 @@ function ProductCard({ name, preparation, variants, image, images, imageAlt }: C
           <WhatsAppIcon />
           Pedir por WhatsApp
         </a>
-        {price === null && (
-          <p className="catalog-card__hint">El precio de 500 g se confirma por WhatsApp.</p>
-        )}
       </div>
     </article>
   );

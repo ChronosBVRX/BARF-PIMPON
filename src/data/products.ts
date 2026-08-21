@@ -1,6 +1,6 @@
 export type ProductVariant = {
   weight: "500 g" | "1 kg";
-  price: number | null;
+  price: number;
 };
 
 export type Product = {
@@ -20,7 +20,7 @@ export const products: Product[] = [
     name: "Pollo + arroz",
     preparation: "Crudo",
     variants: [
-      { weight: "500 g", price: null },
+      { weight: "500 g", price: 17.5 },
       { weight: "1 kg", price: 35 },
     ],
     available: true,
@@ -33,7 +33,7 @@ export const products: Product[] = [
     name: "Pollo + arroz + vegetales",
     preparation: "Crudo",
     variants: [
-      { weight: "500 g", price: null },
+      { weight: "500 g", price: 22.5 },
       { weight: "1 kg", price: 45 },
     ],
     available: true,
@@ -46,7 +46,7 @@ export const products: Product[] = [
     name: "Pollo + res + vegetales",
     preparation: "Crudo",
     variants: [
-      { weight: "500 g", price: null },
+      { weight: "500 g", price: 25 },
       { weight: "1 kg", price: 50 },
     ],
     available: true,
@@ -59,7 +59,7 @@ export const products: Product[] = [
     name: "Pollo + arroz",
     preparation: "Cocido",
     variants: [
-      { weight: "500 g", price: null },
+      { weight: "500 g", price: 32.5 },
       { weight: "1 kg", price: 65 },
     ],
     available: true,
@@ -72,7 +72,7 @@ export const products: Product[] = [
     name: "Pollo + arroz + vegetales",
     preparation: "Cocido",
     variants: [
-      { weight: "500 g", price: null },
+      { weight: "500 g", price: 32.5 },
       { weight: "1 kg", price: 65 },
     ],
     available: true,
@@ -85,7 +85,7 @@ export const products: Product[] = [
     name: "Pollo + res + vegetales",
     preparation: "Cocido",
     variants: [
-      { weight: "500 g", price: null },
+      { weight: "500 g", price: 32.5 },
       { weight: "1 kg", price: 65 },
     ],
     available: true,
@@ -101,10 +101,22 @@ export const cocidoProducts = products.filter((p) => p.preparation === "Cocido")
 export const currencyFormatter = new Intl.NumberFormat("es-MX", {
   style: "currency",
   currency: "MXN",
-  maximumFractionDigits: 0,
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 });
 
-export function formatPrice(price: number | null): string {
-  if (price === null) return "Consultar";
-  return `${currencyFormatter.format(price)} MXN`.replace("$", "$");
+export function formatPrice(price: number): string {
+  return `${currencyFormatter.format(price)}`;
+}
+
+export function priceToCents(price: number): number {
+  return Math.round(price * 100);
+}
+
+export function centsToPrice(cents: number): number {
+  return cents / 100;
+}
+
+export function formatCents(cents: number): string {
+  return currencyFormatter.format(cents / 100);
 }
