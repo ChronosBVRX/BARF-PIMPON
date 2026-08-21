@@ -56,7 +56,8 @@ export default function DogsEating() {
         </div>
 
         <p className="dogs-eating__note">
-          Fotografías de perros reales consumiendo el alimento. No se atribuyen resultados clínicos específicos a las imágenes.
+          Imágenes ilustrativas del momento de alimentación. Cada perro es distinto; los resultados pueden variar. No sustituye la
+          valoración de un médico veterinario.
         </p>
       </div>
     </section>
