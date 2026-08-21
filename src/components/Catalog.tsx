@@ -144,6 +144,7 @@ function ProductCard({ name, preparation, variants, image, images, imageAlt }: C
 export default function Catalog() {
   return (
     <section className="section" id="productos">
+      <span id="presentaciones" aria-hidden="true" style={{ position: "absolute" }} />
       <div className="container">
         <div className="section__intro">
           <p className="eyebrow">Catálogo</p>

@@ -10,8 +10,8 @@ import { DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
 
 const NAV = [
   { href: "#producto", label: "Producto" },
+  { href: "#productos", label: "Presentaciones" },
   { href: "#ingredientes", label: "Ingredientes" },
-  { href: "#presentaciones", label: "Presentaciones" },
   { href: "#conservacion", label: "Conservación" },
   { href: "#preguntas", label: "Preguntas" },
   { href: "#contacto", label: "Contacto" },
